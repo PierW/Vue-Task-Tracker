@@ -1,0 +1,19 @@
+{
+  "name": "vue-task-tracker",
+  "version": "1.0.0",
+  "descriptio": "SPA fatta con Vue 3 in Composition API per CRUD task tracking.",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.0.0"
+  }
+}
