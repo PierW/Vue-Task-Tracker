@@ -1,9 +1,25 @@
 <script setup>
+import TaskCreate from '../components/TaskCreate.vue';
+import { ref } from 'vue';
+import { uid } from 'uid';
+
+const tasksList = ref([]);
+
+const createTask = (task) => {
+  tasksList.value.push({
+    id: uid(),
+    task,
+    isCompleted: null,
+    isEditing: null
+  })
+}
+
 </script>
 
 <template>
   <main>
-    Home
+    <h1>Crea Task</h1>
+    <TaskCreate @create-task="createTask"/>
   </main>
 </template>
 
