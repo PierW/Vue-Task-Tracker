@@ -5,7 +5,11 @@ let taskInput = ref("");
 const emit = defineEmits(['create-task']);
 
 const createTask = () => {
+    if (!taskInput.value) {
+        return;
+    }
     emit("create-task", taskInput.value);
+    taskInput.value = "";
 }
 
 </script>
