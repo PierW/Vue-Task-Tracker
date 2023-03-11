@@ -61,11 +61,6 @@ const checkValueLength = () => {
       outline: none;
     }
   }
-  button {
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-  }
 }
 .err-msg {
   margin-top: 6px;
