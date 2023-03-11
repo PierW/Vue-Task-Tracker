@@ -1,25 +1,43 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { reactive, defineEmits } from 'vue';
 
-let taskInput = ref("");
+let taskInput = reactive({
+    value : '',
+    err: '',
+    isValid: true,
+
+});
+
 const emit = defineEmits(['create-task']);
 
+// Metodo al Click sul bottone
 const createTask = () => {
+    taskInput.isValid = true;
     if (!taskInput.value) {
+        taskInput.isValid = false;
+        taskInput.err = "Compila tutti i campi!"
         return;
     }
     emit("create-task", taskInput.value);
     taskInput.value = "";
 }
 
+// Metodo al keyup nell'input
+const checkValueLength = () => {
+    if (taskInput.value && taskInput.isValid === false) {
+        taskInput.isValid = true;
+    }
+    return;
+}
+
 </script>
 
 <template>
-    <div class="input-wrap">
-        <input type="text" v-model="taskInput" placeholder="Inersci del testo">
+    <div class="input-wrap" :class="{'input-err' : !taskInput.isValid}">
+        <input type="text" @keyup="checkValueLength" v-model="taskInput.value" placeholder="Inersci del testo">
         <button @click="createTask()">Crea</button>
     </div>
-    <p>{{ taskInput }}</p>
+    <p v-show="!taskInput.isValid">{{ taskInput.err }}</p>
 </template>
 
 <style lang="scss" scoped>
@@ -30,6 +48,9 @@ const createTask = () => {
   &:focus-within {
     box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1),
       0 -2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  &.input-err {
+    border-color: red;
   }
   input {
     width: 100%;
@@ -42,6 +63,7 @@ const createTask = () => {
   button {
     padding: 8px 16px;
     border: none;
+    cursor: pointer;
   }
 }
 
