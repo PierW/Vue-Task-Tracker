@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, defineEmits } from 'vue';
+import AppButton from '@/components/AppButton.vue';
 
 let taskInput = reactive({
     value : '',
@@ -35,9 +36,9 @@ const checkValueLength = () => {
 <template>
     <div class="input-wrap" :class="{'input-err' : !taskInput.isValid}">
         <input type="text" @keyup="checkValueLength" v-model="taskInput.value" placeholder="Inersci del testo">
-        <button @click="createTask()">Crea</button>
+        <AppButton @click="createTask()"/>
     </div>
-    <p v-show="!taskInput.isValid">{{ taskInput.err }}</p>
+    <p class="err-msg" v-show="!taskInput.isValid">{{ taskInput.err }}</p>
 </template>
 
 <style lang="scss" scoped>
@@ -65,6 +66,12 @@ const checkValueLength = () => {
     border: none;
     cursor: pointer;
   }
+}
+.err-msg {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: center;
+  color: red;
 }
 
 </style>
