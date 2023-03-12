@@ -1,5 +1,6 @@
 <script setup>
 import TaskCreate from '../components/TaskCreate.vue';
+import TaskItem from '@/components/TaskItem.vue';
 import { ref } from 'vue';
 import { uid } from 'uid';
 
@@ -20,6 +21,9 @@ const createTask = (task) => {
   <main>
     <h1>Crea Task</h1>
     <TaskCreate @create-task="createTask"/>
+    <ul>
+      <TaskItem v-for="task in tasksList" :key="task" :task="task"/>
+    </ul>
   </main>
 </template>
 
