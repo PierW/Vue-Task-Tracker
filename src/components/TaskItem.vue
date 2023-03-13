@@ -21,7 +21,7 @@ defineProps({
     <li class="task task__item">
         <input class="task__checkbox" type="checkbox" :name="task.id" :checked="task.isCompleted" @input="$emit('toggle-task-status', index)"/>
         <div class="task__content">
-            <input v-if="task.isEditing" type="text" :value="task.content"/>
+            <input v-if="task.isEditing" type="text" :value="task.content" @input="$emit('update-value', index, $event.target.value)"/>
             <span v-else :class="{'task--completed': task.isCompleted}">
                 {{ task.content }}
             </span>
