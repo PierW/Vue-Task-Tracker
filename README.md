@@ -1,29 +1,17 @@
-# vue-todos
+# Vue Task Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+<img src="./preview.png" alt="anteprima vue task tracker" height="300" style="margin-bottom: 20px; object-fit: contain;"/>
 
-## Recommended IDE Setup
+SPA per per tener traccia dei propri task realizzata con VUE 3 (Composition API).
+- CRUD - Creazione task, Lista dei task, Modifica Task ed Eliminazione task
+- DB: localStorage
+- Iconify per le icone (usando unplugin-icons per ottimizzazione)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Development server
 
-## Customize configuration
+Da terminale dopo aver fatto `npm install` lancia `npm run dev`
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## INFO
+**Vue Task Tracker** è un piccolo applicativo fatto in Vue 3 (Composition API) praticamente con le stesse funzionalità di [Questo fatto in Angular 15](https://github.com/PierW/Angular-Task-Tracker), con salvataggio dei dati nel localStorage.
+Vue 3 rimane il mio framework preferito. Angular ha senso utilizzarlo in altri contesti.
+La stessa SPA fatta in Angular ha richiesto il doppio del tempo.
