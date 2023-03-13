@@ -9,7 +9,7 @@ const tasksList = ref([]);
 const createTask = (task) => {
   tasksList.value.push({
     id: uid(),
-    task,
+    content: task,
     isCompleted: null,
     isEditing: null
   })
@@ -21,8 +21,8 @@ const createTask = (task) => {
   <main>
     <h1>Crea Task</h1>
     <TaskCreate @create-task="createTask"/>
-    <ul>
-      <TaskItem v-for="task in tasksList" :key="task" :task="task"/>
+    <ul class="todo-list">
+      <TaskItem v-for="task in tasksList" :key="task.id" :task="task"/>
     </ul>
   </main>
 </template>
@@ -38,6 +38,20 @@ main {
   h1 {
     margin-bottom: 16px;
     text-align: center;
+  }
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 24px;
+    gap: 20px;
+  }
+  .todos-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
   }
 }
 </style>
