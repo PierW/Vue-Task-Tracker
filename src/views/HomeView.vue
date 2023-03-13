@@ -1,6 +1,7 @@
 <script setup>
 import TaskCreate from '../components/TaskCreate.vue';
 import TaskItem from '@/components/TaskItem.vue';
+import NotoV1SadButRelievedFace from '~icons/noto-v1/sad-but-relieved-face';
 import { ref } from 'vue';
 import { uid } from 'uid';
 
@@ -24,6 +25,10 @@ const createTask = (task) => {
     <ul class="task-list">
       <TaskItem v-for="task in tasksList" :key="task.id" :task="task"/>
     </ul>
+    <p class="task-msg">
+      <NotoV1SadButRelievedFace width="22"/>
+      <span>Non hai Task completati!</span>
+    </p>
   </main>
 </template>
 
