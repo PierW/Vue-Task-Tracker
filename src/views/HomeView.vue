@@ -22,10 +22,10 @@ const createTask = (task) => {
   <main>
     <h1>Crea Task</h1>
     <TaskCreate @create-task="createTask"/>
-    <ul class="task-list">
+    <ul class="task-list" v-if="tasksList.length > 0">
       <TaskItem v-for="task in tasksList" :key="task.id" :task="task"/>
     </ul>
-    <p class="task-msg">
+    <p class="task-msg" v-else>
       <NotoV1SadButRelievedFace width="22" height="auto"/>
       <span>Non hai Task completati!</span>
     </p>
