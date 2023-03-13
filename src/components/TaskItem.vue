@@ -17,14 +17,14 @@ import PhTrashBold from '~icons/ph/trash-bold'
         <input class="task__checkbox" type="checkbox" :name="task.id" :checked="task.isCompleted"/>
         <div class="task__content">
             <input v-if="task.isEditing" type="text" :value="task.content"/>
-            <span v-else>
+            <span v-else :class="{'task--completed': task.isCompleted}">
                 {{ task.content }}
             </span>
         </div>
         <div class="task__actions">
-            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" height="auto" />
-            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" height="auto" />
-            <PhTrashBold class="icon" color="#f95e5e" width="22" height="auto"/>
+            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" height="100%" />
+            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" height="100%" />
+            <PhTrashBold class="icon" color="#f95e5e" width="22" height="100%"/>
         </div>
     </li>
 
@@ -53,6 +53,11 @@ li {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     &:checked {
       background-color: #41b080;
+    }
+  }
+  .task{
+    &--completed{
+      text-decoration: line-through;
     }
   }
   .task__content {
