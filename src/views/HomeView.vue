@@ -21,7 +21,7 @@ const createTask = (task) => {
   <main>
     <h1>Crea Task</h1>
     <TaskCreate @create-task="createTask"/>
-    <ul class="todo-list">
+    <ul class="task-list">
       <TaskItem v-for="task in tasksList" :key="task.id" :task="task"/>
     </ul>
   </main>
@@ -39,14 +39,14 @@ main {
     margin-bottom: 16px;
     text-align: center;
   }
-  .todo-list {
+  .task-list {
     display: flex;
     flex-direction: column;
     list-style: none;
     margin-top: 24px;
     gap: 20px;
   }
-  .todos-msg {
+  .task-msg {
     display: flex;
     align-items: center;
     justify-content: center;

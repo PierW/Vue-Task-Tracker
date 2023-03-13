@@ -38,7 +38,7 @@ li {
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
   &:hover {
-    .todo-actions {
+    .task__actions {
       opacity: 1;
     }
   }
@@ -53,7 +53,7 @@ li {
       background-color: #41b080;
     }
   }
-  .todo {
+  .task {
     flex: 1;
     input[type="text"] {
       width: 100%;
@@ -61,7 +61,7 @@ li {
       border: 2px solid #41b080;
     }
   }
-  .todo-actions {
+  .task__actions {
     display: flex;
     gap: 6px;
     opacity: 0;
