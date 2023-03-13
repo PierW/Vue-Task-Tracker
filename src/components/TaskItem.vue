@@ -3,18 +3,23 @@ import PhCheckCircleBold from '~icons/ph/check-circle-bold'
 import PhNotePencilBold from '~icons/ph/note-pencil-bold'
 import PhTrashBold from '~icons/ph/trash-bold'
 
-    const tasks = defineProps({
-        task: {
-            type: Object,
-            required: true
-        }
-    });
+defineProps({
+    task: {
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+});
+
 </script>
 
 <template>
 
     <li class="task task__item">
-        <input class="task__checkbox" type="checkbox" :name="task.id" :checked="task.isCompleted"/>
+        <input class="task__checkbox" type="checkbox" :name="task.id" :checked="task.isCompleted" @input="$emit('toggle-task-status', index)"/>
         <div class="task__content">
             <input v-if="task.isEditing" type="text" :value="task.content"/>
             <span v-else :class="{'task--completed': task.isCompleted}">
