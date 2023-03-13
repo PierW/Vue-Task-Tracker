@@ -1,5 +1,7 @@
 <script setup>
-import { Icon } from '@iconify/vue';
+import PhCheckCircleBold from '~icons/ph/check-circle-bold'
+import PhNotePencilBold from '~icons/ph/note-pencil-bold'
+import PhTrashBold from '~icons/ph/trash-bold'
 
     const tasks = defineProps({
         task: {
@@ -20,9 +22,9 @@ import { Icon } from '@iconify/vue';
             </span>
         </div>
         <div class="task__actions">
-            <Icon v-if="task.isEditing" class="icon" icon="ph:check-circle-bold" color="#41b080" width="22" />
-            <Icon v-else class="icon" icon="ph:note-pencil-bold" color="#41b080" width="22" />
-            <Icon class="icon" icon="ph:trash-bold" color="#f95e5e" width="22" />
+            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" />
+            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" />
+            <PhTrashBold class="icon" color="#f95e5e" width="22" />
         </div>
     </li>
 
