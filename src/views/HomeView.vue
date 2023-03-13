@@ -17,7 +17,11 @@ const createTask = (task) => {
 }
 
 const toggleTaskStatus = (taskIndex) => {
-  console.log(taskIndex);
+  tasksList.value[taskIndex].isCompleted = !tasksList.value[taskIndex].isCompleted;
+}
+
+const editTask = (taskIndex) => {
+  tasksList.value[taskIndex].isEditing = !tasksList.value[taskIndex].isEditing;
 }
 
 </script>
@@ -27,7 +31,7 @@ const toggleTaskStatus = (taskIndex) => {
     <h1>Crea Task</h1>
     <TaskCreate @create-task="createTask"/>
     <ul class="task-list" v-if="tasksList.length > 0">
-      <TaskItem v-for="(task, index) in tasksList" :key="task.id" :task="task" :index="index" @toggle-task-status="toggleTaskStatus"/>
+      <TaskItem v-for="(task, index) in tasksList" :key="task.id" :task="task" :index="index" @toggle-task-status="toggleTaskStatus" @edit-task="editTask"/>
     </ul>
     <p class="task-msg" v-else>
       <NotoV1SadButRelievedFace width="22" height="100%"/>

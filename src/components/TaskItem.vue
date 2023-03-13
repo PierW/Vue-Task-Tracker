@@ -27,8 +27,8 @@ defineProps({
             </span>
         </div>
         <div class="task__actions">
-            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" height="100%" />
-            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" height="100%" />
+            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" height="100%" @click="$emit('edit-task', index)"/>
+            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" height="100%" @click="$emit('edit-task', index)" />
             <PhTrashBold class="icon" color="#f95e5e" width="22" height="100%"/>
         </div>
     </li>
