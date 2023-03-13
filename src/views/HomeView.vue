@@ -26,7 +26,7 @@ const createTask = (task) => {
       <TaskItem v-for="task in tasksList" :key="task.id" :task="task"/>
     </ul>
     <p class="task-msg">
-      <NotoV1SadButRelievedFace width="22"/>
+      <NotoV1SadButRelievedFace width="22" height="auto"/>
       <span>Non hai Task completati!</span>
     </p>
   </main>

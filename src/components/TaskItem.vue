@@ -22,9 +22,9 @@ import PhTrashBold from '~icons/ph/trash-bold'
             </span>
         </div>
         <div class="task__actions">
-            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" />
-            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" />
-            <PhTrashBold class="icon" color="#f95e5e" width="22" />
+            <PhCheckCircleBold v-if="task.isEditing" class="icon" color="#41b080" width="22" height="auto" />
+            <PhNotePencilBold v-else class="icon" color="#41b080" width="22" height="auto" />
+            <PhTrashBold class="icon" color="#f95e5e" width="22" height="auto"/>
         </div>
     </li>
 
