@@ -14,14 +14,14 @@ import { Icon } from '@iconify/vue';
     <li class="task task__item">
         <input class="task__checkbox" type="checkbox" :name="task.id" :checked="task.isCompleted"/>
         <div class="task__content">
-            <input type="text" :value="task.content"/>
-            <span>
+            <input v-if="task.isEditing" type="text" :value="task.content"/>
+            <span v-else>
                 {{ task.content }}
             </span>
         </div>
         <div class="task__actions">
-            <Icon class="icon" icon="ph:check-circle-bold" color="#41b080" width="22" />
-            <Icon class="icon" icon="ph:note-pencil-bold" color="#41b080" width="22" />
+            <Icon v-if="task.isEditing" class="icon" icon="ph:check-circle-bold" color="#41b080" width="22" />
+            <Icon v-else class="icon" icon="ph:note-pencil-bold" color="#41b080" width="22" />
             <Icon class="icon" icon="ph:trash-bold" color="#f95e5e" width="22" />
         </div>
     </li>
@@ -53,7 +53,7 @@ li {
       background-color: #41b080;
     }
   }
-  .task {
+  .task__content {
     flex: 1;
     input[type="text"] {
       width: 100%;
