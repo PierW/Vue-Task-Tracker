@@ -2,7 +2,7 @@
 import TaskCreate from '../components/TaskCreate.vue';
 import TaskItem from '@/components/TaskItem.vue';
 import NotoV1SadButRelievedFace from '~icons/noto-v1/sad-but-relieved-face';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { uid } from 'uid';
 
 const tasksList = ref([]);
@@ -10,6 +10,21 @@ const tasksList = ref([]);
 onMounted(() => {
   fetchTaskList();
 });
+
+watch(
+  tasksList,
+  () => {
+    // TODO: Sostituire questa condizione creando il componente TaskList mettendo l'ul e rimuovere localStorage al onBeforeUnmount()
+    if(!tasksList.value.length){
+      localStorage.removeItem('tasksList');
+      return;
+    }
+    setTasksListLocalStorage();
+  },
+  {
+    deep: true
+  }
+);
 
 const fetchTaskList = () => {
   const res = JSON.parse(localStorage.getItem("tasksList"));
@@ -29,27 +44,22 @@ const createTask = (task) => {
     isCompleted: null,
     isEditing: null
   });
-  setTasksListLocalStorage();
 }
 
 const toggleTaskStatus = (taskIndex) => {
   tasksList.value[taskIndex].isCompleted = !tasksList.value[taskIndex].isCompleted;
-  setTasksListLocalStorage();
 }
 
 const editTask = (taskIndex) => {
   tasksList.value[taskIndex].isEditing = !tasksList.value[taskIndex].isEditing;
-  setTasksListLocalStorage();
 }
 
 const updateValue = (taskIndex, newTaskValue) => {
   tasksList.value[taskIndex].content = newTaskValue;
-  setTasksListLocalStorage();
 }
 
 const deleteTask = (taskId) => {
   tasksList.value = tasksList.value.filter((task) => task.id !== taskId );
-  setTasksListLocalStorage();
 }
 
 </script>
