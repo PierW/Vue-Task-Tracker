@@ -2,10 +2,25 @@
 import TaskCreate from '../components/TaskCreate.vue';
 import TaskItem from '@/components/TaskItem.vue';
 import NotoV1SadButRelievedFace from '~icons/noto-v1/sad-but-relieved-face';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { uid } from 'uid';
 
 const tasksList = ref([]);
+
+onMounted(() => {
+  fetchTaskList();
+});
+
+const fetchTaskList = () => {
+  const res = JSON.parse(localStorage.getItem("tasksList"));
+  if (res) {
+    tasksList.value = res;
+  }
+}
+
+const setTasksListLocalStorage = () => {
+  localStorage.setItem("tasksList", JSON.stringify(tasksList.value));
+}
 
 const createTask = (task) => {
   tasksList.value.push({
@@ -13,23 +28,28 @@ const createTask = (task) => {
     content: task,
     isCompleted: null,
     isEditing: null
-  })
+  });
+  setTasksListLocalStorage();
 }
 
 const toggleTaskStatus = (taskIndex) => {
   tasksList.value[taskIndex].isCompleted = !tasksList.value[taskIndex].isCompleted;
+  setTasksListLocalStorage();
 }
 
 const editTask = (taskIndex) => {
   tasksList.value[taskIndex].isEditing = !tasksList.value[taskIndex].isEditing;
+  setTasksListLocalStorage();
 }
 
 const updateValue = (taskIndex, newTaskValue) => {
   tasksList.value[taskIndex].content = newTaskValue;
+  setTasksListLocalStorage();
 }
 
 const deleteTask = (taskId) => {
   tasksList.value = tasksList.value.filter((task) => task.id !== taskId );
+  setTasksListLocalStorage();
 }
 
 </script>
