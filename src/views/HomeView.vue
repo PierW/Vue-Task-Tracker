@@ -2,7 +2,8 @@
 import TaskCreate from '../components/TaskCreate.vue';
 import TaskItem from '@/components/TaskItem.vue';
 import NotoV1SadButRelievedFace from '~icons/noto-v1/sad-but-relieved-face';
-import { ref, onMounted, watch } from 'vue';
+import NotoV1PartyPopper from '~icons/noto-v1/party-popper';
+import { ref, onMounted, watch, computed } from 'vue';
 import { uid } from 'uid';
 
 const tasksList = ref([]);
@@ -46,6 +47,10 @@ const createTask = (task) => {
   });
 }
 
+const tasksCompleted = computed(() =>{
+  return tasksList.value.every((task) => task.isCompleted);
+});
+
 const toggleTaskStatus = (taskIndex) => {
   tasksList.value[taskIndex].isCompleted = !tasksList.value[taskIndex].isCompleted;
 }
@@ -73,7 +78,11 @@ const deleteTask = (taskId) => {
     </ul>
     <p class="task-msg" v-else>
       <NotoV1SadButRelievedFace width="22" height="100%"/>
-      <span>Non hai Task completati!</span>
+      <span>Non hai Task da completare! Creane uno!</span>
+    </p>
+    <p v-if="tasksCompleted && tasksList.length > 0" class="task-msg">
+      <NotoV1PartyPopper width="22" height="100%"/>
+      <span>Hai completato tutti i task!</span>
     </p>
   </main>
 </template>
