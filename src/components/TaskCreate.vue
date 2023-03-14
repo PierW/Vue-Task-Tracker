@@ -35,8 +35,8 @@ const checkValueLength = () => {
 
 <template>
     <div class="input-wrap" :class="{'input-err' : !taskInput.isValid}">
-        <input type="text" @keyup="checkValueLength" v-model="taskInput.value" placeholder="Inersci del testo">
-        <AppButton @click="createTask()"/>
+        <input type="text" @input="checkValueLength" @keyup.enter="createTask()" v-model="taskInput.value" placeholder="Inersci del testo">
+        <AppButton @click.enter="createTask()"/>
     </div>
     <p class="err-msg" v-show="!taskInput.isValid">{{ taskInput.err }}</p>
 </template>
