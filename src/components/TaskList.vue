@@ -64,9 +64,15 @@ export default {
 <template>
     <div class="task-list-container">
         <ul class="task-list" v-if="tasksList.length > 0">
-            <TaskItem v-for="(task, index) in tasksList" :key="task.id" :task="task" :index="index"
-                @toggle-task-status="toggleTaskStatus" @edit-task="editTask" @update-value="updateValue"
-                @delete-task="deleteTask" />
+            <TaskItem
+                v-for="(task, index) in tasksList"
+                :key="task.id" :task="task"
+                :index="index"
+                @toggle-task-status="toggleTaskStatus"
+                @edit-task="editTask"
+                @update-value="updateValue"
+                @delete-task="deleteTask"
+            />
         </ul>
         <p class="task-msg" v-else>
             <NotoV1SadButRelievedFace width="22" height="100%" />
