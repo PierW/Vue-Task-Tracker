@@ -1,64 +1,50 @@
-<script>
+<script setup>
 import TaskItem from '@/components/TaskItem.vue';
 import NotoV1SadButRelievedFace from '~icons/noto-v1/sad-but-relieved-face';
 import NotoV1PartyPopper from '~icons/noto-v1/party-popper';
-import { computed } from 'vue';
+import { computed, defineProps, defineEmits, onBeforeUnmount } from 'vue';
 
-export default {
-    components: {
-        TaskItem,
-        NotoV1SadButRelievedFace,
-        NotoV1PartyPopper,
-    },
-    props: {
-        tasksList: {
-            type: Array,
-            required: true,
-        },
-    },
-    setup(props, { emit }) {
-        const toggleTaskStatus = (taskIndex) => {
-            props.tasksList[taskIndex].isCompleted = !props.tasksList[taskIndex].isCompleted;
-        }
+const props = defineProps({
+  tasksList: {
+    type: Array,
+    required: true,
+  },
+});
 
-        const editTask = (taskIndex) => {
-            props.tasksList[taskIndex].isEditing = !props.tasksList[taskIndex].isEditing;
-        }
+const emit = defineEmits();
 
-        const updateValue = (taskIndex, newTaskValue) => {
-            props.tasksList[taskIndex].content = newTaskValue;
-        }
+const toggleTaskStatus = (taskIndex) => {
+  props.tasksList[taskIndex].isCompleted = !props.tasksList[taskIndex].isCompleted;
+};
 
-        const deleteTask = (taskId) => {
-            // Creo una nuova copia dell'array "tasksList" perchè la props è di sola lettura e devo modificare con l'emit quello di orgine nel componente padre.
-            const newTasksList = props.tasksList.filter((task) => task.id !== taskId);
-            /* 
-            La sintassi update:tasksList significa che stiamo emettendo un evento personalizzato chiamato "update" 
-            e che i dati associati a questo evento sono relativi alla prop tasksList.
-            In altre parole, stiamo dicendo a Vue di aggiornare la prop tasksList nel componente padre
-            quando l'evento update:tasksList viene emesso dal componente figlio. 
-            */
-            emit('update:tasksList', newTasksList);
-        }
+const editTask = (taskIndex) => {
+  props.tasksList[taskIndex].isEditing = !props.tasksList[taskIndex].isEditing;
+};
 
-        const tasksCompleted = computed(() => {
-            return props.tasksList.every((task) => task.isCompleted);
-        });
+const updateValue = (taskIndex, newTaskValue) => {
+  props.tasksList[taskIndex].content = newTaskValue;
+};
 
-        return {
-            toggleTaskStatus,
-            editTask,
-            updateValue,
-            deleteTask,
-            tasksCompleted,
-        }
-    },
-    beforeUnmount() {
-        localStorage.removeItem('tasksList');
-        console.log('Componente Eliminato');
-    }
+const deleteTask = (taskId) => {
+  // Creo una nuova copia dell'array "tasksList" perchè la prop è di sola lettura e devo modificare con l'emit quello di orgine nel componente padre.
+  const newTasksList = props.tasksList.filter((task) => task.id !== taskId);
+  /* 
+    La sintassi update:tasksList significa che stiamo emettendo un evento personalizzato chiamato "update" 
+    e che i dati associati a questo evento sono relativi alla prop tasksList.
+    In altre parole, stiamo dicendo a Vue di aggiornare la prop tasksList nel componente padre
+    quando l'evento update:tasksList viene emesso dal componente figlio. 
+    */
+  emit('update:tasksList', newTasksList);
+};
 
-}
+const tasksCompleted = computed(() => {
+  return props.tasksList.every((task) => task.isCompleted);
+});
+
+onBeforeUnmount(() => {
+  localStorage.removeItem('tasksList');
+  console.log('Componente Eliminato');
+});
 </script>
 
 <template>
